@@ -604,7 +604,7 @@ function! vp4#PerforceAnnotate(...) range
     let filename = s:PerforceAddRevision(filename)
 
     " Save the cursor position and buffer number
-    let saved_curpos = getcurpos()
+    let saved_curpos = getpos('.')
     let saved_bufnr = bufnr(bufname("%"))
 
     " Open a split and perform p4 annotate command
@@ -651,7 +651,7 @@ function! vp4#PerforceFilelog()
 
     " Remember some stuff about this file
     let g:_vp4_filetype = &filetype
-    let g:_vp4_curpos = getcurpos()
+    let g:_vp4_curpos = getpos('.')
 
     " Set up the command.  Limit the maximum number of entries.
     let command = 'filelog'
@@ -808,7 +808,7 @@ function! s:ExplorerSync()
         " sync
         if d.folded = 1
             let d.folded = 0
-            let saved_curpos = getcurpos()
+            let saved_curpos = getpos('.')
             call s:ExplorerRender(g:explorer_key)
             call setpos('.', saved_curpos)
         endif
@@ -851,7 +851,7 @@ function! s:ExplorerGoTo()
 
         " toggle fold/unfold
         let d.folded = !d.folded
-        let saved_curpos = getcurpos()
+        let saved_curpos = getpos('.')
         call s:ExplorerRender(g:explorer_key)
         call setpos('.', saved_curpos)
     else
